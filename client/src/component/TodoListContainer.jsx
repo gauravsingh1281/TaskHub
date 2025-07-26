@@ -130,6 +130,7 @@ const TodoListContainer = () => {
               placeholder="Add a new task..."
               className="flex-1 px-4 sm:px-6 py-3 sm:py-4 rounded-lg sm:rounded-xl border-0 outline-none text-gray-800 placeholder-gray-500 shadow-lg focus:ring-4 focus:ring-lime-300 transition-all duration-300 text-base sm:text-lg bg-white"
               {...register("item", { required: true })}
+              autoComplete="off"
               onFocus={() => {
                 // Close editing mode when focusing on add input
                 setEditingId(null);
@@ -195,6 +196,7 @@ const TodoListContainer = () => {
                         onChange={(e) => setEditedText(e.target.value)}
                         className="w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl border-0 outline-none text-gray-800 shadow-lg focus:ring-4 focus:ring-green-300 transition-all duration-300 bg-white text-sm sm:text-base"
                         autoFocus
+                        autoComplete="off"
                       />
                     </div>
                     <div className="flex gap-2 sm:gap-3 justify-end sm:justify-start">
