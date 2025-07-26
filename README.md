@@ -1,30 +1,46 @@
-# 📝 TaskHub
+# 📝 **TaskHub**
 
-A modern, full-stack Todo application built with React.js and Node.js, featuring a beautiful UI, robust API, and comprehensive testing suite.
+**A modern, full-stack Todo application built with React.js and Node.js.**
 
-## ✨ Features
+Organize your life, one task at a time — with a clean UI, smooth user experience, and reliable backend.
 
-## 🛠️ Tech Stack
+---
 
-### **Frontend**
+## ✨ **Key Features**
 
-- **React.js 18+** - Modern React with hooks
-- **Vite** - Fast build tool and dev server
-- **Tailwind CSS** - Utility-first CSS framework
-- **React Hook Form** - Form management
-- **React Toastify** - Toast notifications
-- **Axios** - HTTP client
+- ✅ Add, edit, delete, and view todos with real-time updates
+- ✏️ **Edit mode auto-closes** when a new todo is added
+- 🔄 Seamless state management using React Hooks
+- 🧪 Robust backend API built with Express and MongoDB
+- 📱 Fully responsive design (desktop and mobile)
+- 🔔 Toast notifications for all actions
+- 🗂️ Clean, scalable project structure
 
-### **Backend**
+---
 
-- **Node.js** - JavaScript runtime
-- **Express.js** - Web application framework
-- **MongoDB** - NoSQL database
-- **Mongoose** - MongoDB object modeling
-- **CORS** - Cross-origin resource sharing
-- **dotenv** - Environment variable management
+## 🛠️ **Tech Stack**
 
-## 📁 Project Structure
+### 🔹 Frontend
+
+- **React.js 18+** – Modern component-based UI
+- **Vite** – Lightning-fast dev server and bundler
+- **Tailwind CSS** – Utility-first styling
+- **React Hook Form** – Easy form handling
+- **Axios** – Simplified HTTP requests
+- **React Toastify** – User-friendly toast notifications
+
+### 🔸 Backend
+
+- **Node.js** – JavaScript runtime
+- **Express.js** – Minimal and flexible server
+- **MongoDB** – NoSQL database
+- **Mongoose** – MongoDB object modeling
+- **CORS** – Cross-origin resource sharing
+- **dotenv** – Environment variable management
+
+---
+
+## 📁 **Project Structure**
 
 ```
 taskHub/
@@ -51,11 +67,6 @@ taskHub/
 │   │   └── app.js             # Express app configuration
 │   ├── server.js              # Server entry point
 │   └── package.json
-├── postman/                   # API testing
-│   ├── TaskHub_API.postman_collection.json
-│   ├── TaskHub_Environment.postman_environment.json
-│   └── README.md
-├── API_DOCUMENTATION.md       # Complete API docs
 └── README.md                 # This file
 ```
 
@@ -181,35 +192,11 @@ curl -X PATCH http://localhost:3000/TODO_ID \
 curl -X DELETE http://localhost:3000/TODO_ID
 ```
 
-## 👨‍💻 Author
+## Author
 
-**Gaurav Singh**
+**Gaurav Pratap Singh**
 
 - GitHub: [@gauravsingh1281](https://github.com/gauravsingh1281)
-- Project: [TaskHub](https://github.com/gauravsingh1281/TaskHub)
-
-## 📸 Screenshots
-
-### Main Interface
-
-![TaskHub Main Interface](placeholder-for-main-interface-screenshot)
-
-### Mobile View
-
-![TaskHub Mobile View](placeholder-for-mobile-screenshot)
-
-### Add Todo
-
-![Add Todo Feature](placeholder-for-add-todo-screenshot)
-
-### Edit Mode
-
-![Edit Todo Feature](placeholder-for-edit-mode-screenshot)
+- Linkedin: [@gauravsingh1281](https://www.linkedin.com/in/gauravsingh1281)
 
 ---
-
-⭐ **Star this repository if you found it helpful!**
-
-🐛 **Found a bug or want to contribute?** [Open an issue](https://github.com/gauravsingh1281/TaskHub/issues)
-
-📧 **Questions?** Feel free to reach out via GitHub issues or discussions.
