@@ -90,6 +90,20 @@ const TodoListContainer = () => {
     setEditedText("");
   };
 
+  const handleToggleComplete = async (id) => {
+    try {
+      setLoading(true);
+      await apiInstance.put(`/${id}/toggle`);
+      toast.success("Task status updated successfully.");
+      await fetchTodos();
+    } catch (error) {
+      toast.error("Unable to update task status. Please try again");
+      console.log("An error occurred while toggling the to-do status:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   // Loader
   const Loader = () => (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
@@ -184,7 +198,11 @@ const TodoListContainer = () => {
             todoItem.map((item, index) => (
               <div
                 key={item._id}
-                className="bg-lime-100 rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-xl border border-lime-200 hover:bg-lime-50 transition-all duration-300 transform hover:scale-[1.01] sm:hover:scale-[1.02]"
+                className={`rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-xl border transition-all duration-300 transform hover:scale-[1.01] sm:hover:scale-[1.02] ${
+                  item.completed
+                    ? "bg-gray-50 border-gray-200 hover:bg-gray-100 opacity-75"
+                    : "bg-lime-100 border-lime-200 hover:bg-lime-50"
+                }`}
               >
                 {editingId === item._id ? (
                   // Edit Mode
@@ -246,10 +264,48 @@ const TodoListContainer = () => {
                   // Normal Mode
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
                     <div className="flex items-center gap-3 sm:gap-4 flex-1 min-w-0">
+                      {/* Completion Checkbox */}
+                      <button
+                        onClick={() => handleToggleComplete(item._id)}
+                        disabled={loading}
+                        className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 rounded-full border-2 border-lime-500 flex items-center justify-center hover:bg-lime-50 transition-all duration-200 disabled:opacity-50"
+                        style={{
+                          backgroundColor: item.completed
+                            ? "#10b981"
+                            : "transparent",
+                          borderColor: item.completed ? "#10b981" : "#84cc16",
+                        }}
+                      >
+                        {item.completed && (
+                          <svg
+                            className="w-3 h-3 sm:w-4 sm:h-4 text-white"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={3}
+                              d="M5 13l4 4L19 7"
+                            />
+                          </svg>
+                        )}
+                      </button>
+
+                      {/* Task Number */}
                       <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-lime-500 to-lime-600 rounded-full flex items-center justify-center text-white font-bold text-xs sm:text-sm shadow-lg flex-shrink-0">
                         {index + 1}
                       </div>
-                      <h3 className="text-base sm:text-xl text-gray-800 font-medium flex-1 break-words">
+
+                      {/* Task Text */}
+                      <h3
+                        className={`text-base sm:text-xl font-medium flex-1 break-words transition-all duration-200 ${
+                          item.completed
+                            ? "text-gray-500 line-through"
+                            : "text-gray-800"
+                        }`}
+                      >
                         {item.item}
                       </h3>
                     </div>
@@ -306,12 +362,23 @@ const TodoListContainer = () => {
         {todoItem.length > 0 && (
           <div className="mt-6 sm:mt-8 text-center">
             <div className="bg-lime-100 rounded-xl sm:rounded-2xl p-3 sm:p-4 inline-block border border-lime-200 shadow-lg">
-              <p className="text-gray-800 font-medium text-sm sm:text-base">
-                Total Tasks:{" "}
-                <span className="text-lime-600 font-bold">
-                  {todoItem.length}
-                </span>
-              </p>
+              <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
+                <p className="text-gray-800 font-medium text-sm sm:text-base">
+                  Total Tasks:{" "}
+                  <span className="text-lime-600 font-bold">
+                    {todoItem.length}
+                  </span>
+                </p>
+                <div className="flex gap-4 text-sm">
+                  <span className="text-green-600 font-medium">
+                    Completed:{" "}
+                    {todoItem.filter((item) => item.completed).length}
+                  </span>
+                  <span className="text-orange-600 font-medium">
+                    Pending: {todoItem.filter((item) => !item.completed).length}
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         )}

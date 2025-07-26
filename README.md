@@ -9,11 +9,14 @@ Organize your life, one task at a time — with a clean UI, smooth user experien
 ## ✨ **Key Features**
 
 - ✅ Add, edit, delete, and view todos with real-time updates
+- ☑️ **Mark tasks as completed** with visual checkboxes and status tracking
 - ✏️ **Edit mode auto-closes** when a new todo is added
 - 🔄 Seamless state management using React Hooks
+- 📊 **Smart task counters** showing total, completed, and pending tasks
 - 🧪 Robust backend API built with Express and MongoDB
 - 📱 Fully responsive design (desktop and mobile)
 - 🔔 Toast notifications for all actions
+- 🎨 **Visual feedback** for completed tasks (strikethrough and dimmed)
 - 🗂️ Clean, scalable project structure
 
 ---
@@ -155,12 +158,13 @@ http://localhost:3000
 
 ### Endpoints
 
-| Method   | Endpoint | Description     | Body                       |
-| -------- | -------- | --------------- | -------------------------- |
-| `GET`    | `/`      | Get all todos   | None                       |
-| `POST`   | `/`      | Create new todo | `{"item": "Todo text"}`    |
-| `PATCH`  | `/:id`   | Update todo     | `{"item": "Updated text"}` |
-| `DELETE` | `/:id`   | Delete todo     | None                       |
+| Method   | Endpoint      | Description       | Body                       |
+| -------- | ------------- | ----------------- | -------------------------- |
+| `GET`    | `/`           | Get all todos     | None                       |
+| `POST`   | `/`           | Create new todo   | `{"item": "Todo text"}`    |
+| `PATCH`  | `/:id`        | Update todo text  | `{"item": "Updated text"}` |
+| `PUT`    | `/:id/toggle` | Toggle completion | None                       |
+| `DELETE` | `/:id`        | Delete todo       | None                       |
 
 ### Example Requests
 
@@ -184,6 +188,13 @@ curl -X GET http://localhost:3000/
 curl -X PATCH http://localhost:3000/TODO_ID \
   -H "Content-Type: application/json" \
   -d '{"item": "Learn Advanced React.js"}'
+```
+
+#### Toggle Todo Completion
+
+```bash
+curl -X PUT http://localhost:3000/TODO_ID/toggle \
+  -H "Content-Type: application/json"
 ```
 
 #### Delete Todo
