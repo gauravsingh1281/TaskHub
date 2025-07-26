@@ -105,7 +105,7 @@ const TodoListContainer = () => {
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-6 sm:mb-8">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-2 drop-shadow-lg">
-            ✨ Todo App
+            ✨ TaskHub
           </h1>
           <p className="text-gray-300 text-sm sm:text-lg">
             Organize your life, one task at a time
