@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import apiInstance from "../apiInstance";
+import { toast } from "react-toastify";
 
 const TodoListContainer = () => {
   const { register, handleSubmit, reset } = useForm();
@@ -36,10 +37,12 @@ const TodoListContainer = () => {
       await apiInstance.post("/", {
         item: data.item,
       });
+      toast.success("Task added successfully.");
       reset();
       await fetchTodos();
     } catch (error) {
-      console.log("Error adding todo:", error);
+      toast.error("Unable to add task. Please try again");
+      console.log("An error occurred while adding the to-do:", error);
     } finally {
       setLoading(false);
     }
@@ -49,9 +52,11 @@ const TodoListContainer = () => {
     try {
       setLoading(true);
       await apiInstance.delete(`/${id}`);
+      toast.success("Task deleted successfully.");
       await fetchTodos();
     } catch (error) {
-      console.log("Error while deleting todos:", error);
+      toast.error("Unable to delete task. Please try again");
+      console.log("An error occurred while deleting the to-do:", error);
     } finally {
       setLoading(false);
     }
@@ -70,9 +75,11 @@ const TodoListContainer = () => {
       });
       setEditingId(null);
       setEditedText("");
+      toast.success("Task updated successfully.");
       await fetchTodos();
     } catch (error) {
-      console.log("Error while updating todo:", error);
+      toast.error("Unable to update task. Please try again");
+      console.log("An error occurred while updating the to-do:", error);
     } finally {
       setLoading(false);
     }
